@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function StarRating({ value, onClick, children: renderStar }) {
   const stars = [];
@@ -29,3 +30,9 @@ function Star({ starValue, starRatingValue, onClick, renderStar }) {
     isFilled: starValue <= starRatingValue,
   });
 }
+
+StarRating.propTypes = {
+  value: PropTypes.number,
+  onClick: PropTypes.func,
+  children: PropTypes.func,
+};
