@@ -7,7 +7,13 @@ function App() {
 
   return (
     <div>
-      <StarRating value={rating1} onClick={setRating1} />
+      <StarRating
+        value={rating1}
+        onClick={setRating1}
+        emptyColor="#bbb"
+        filledColor="yellow"
+        size="3x"
+      />
     </div>
   );
 }
