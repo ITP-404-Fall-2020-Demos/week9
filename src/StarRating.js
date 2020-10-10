@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function StarRating({ value, onClick, renderStar }) {
+export default function StarRating({ value, onClick, children: renderStar }) {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {

@@ -10,10 +10,8 @@ function App() {
 
   return (
     <div>
-      <StarRating
-        value={rating1}
-        onClick={setRating1}
-        renderStar={({ onClick, isFilled }) => {
+      <StarRating value={rating1} onClick={setRating1}>
+        {({ onClick, isFilled }) => {
           return (
             <button type="button" className="btn btn-link" onClick={onClick}>
               <FontAwesomeIcon
@@ -24,7 +22,7 @@ function App() {
             </button>
           );
         }}
-      />
+      </StarRating>
     </div>
   );
 }
