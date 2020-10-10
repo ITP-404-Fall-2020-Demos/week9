@@ -1,11 +1,6 @@
 import React from "react";
 
-export default function StarRating({
-  value,
-  onClick,
-  renderEmptyStar,
-  renderFilledStar,
-}) {
+export default function StarRating({ value, onClick, renderStar }) {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -15,8 +10,7 @@ export default function StarRating({
         starRatingValue={value}
         key={i}
         onClick={onClick}
-        renderEmptyStar={renderEmptyStar}
-        renderFilledStar={renderFilledStar}
+        renderStar={renderStar}
       />
     );
   }
@@ -24,27 +18,14 @@ export default function StarRating({
   return <>{stars}</>;
 }
 
-function Star({
-  starValue,
-  starRatingValue,
-  onClick,
-  renderEmptyStar,
-  renderFilledStar,
-}) {
+function Star({ starValue, starRatingValue, onClick, renderStar }) {
   function handleClick() {
     const clickedStarValue = starValue === starRatingValue ? 0 : starValue;
     onClick(clickedStarValue);
   }
 
-  const arg = {
+  return renderStar({
     onClick: handleClick,
-  };
-
-  return (
-    <>
-      {starValue <= starRatingValue
-        ? renderFilledStar(arg)
-        : renderEmptyStar(arg)}
-    </>
-  );
+    isFilled: starValue <= starRatingValue,
+  });
 }

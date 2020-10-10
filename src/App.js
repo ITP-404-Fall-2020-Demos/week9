@@ -13,25 +13,14 @@ function App() {
       <StarRating
         value={rating1}
         onClick={setRating1}
-        renderEmptyStar={(props) => {
+        renderStar={({ onClick, isFilled }) => {
           return (
-            <button
-              type="button"
-              className="btn btn-link"
-              onClick={props.onClick}
-            >
-              <FontAwesomeIcon icon={faStar} color="#bbb" size={size} />
-            </button>
-          );
-        }}
-        renderFilledStar={(props) => {
-          return (
-            <button
-              type="button"
-              className="btn btn-link"
-              onClick={props.onClick}
-            >
-              <FontAwesomeIcon icon={faStar} color="yellow" size={size} />
+            <button type="button" className="btn btn-link" onClick={onClick}>
+              <FontAwesomeIcon
+                icon={faStar}
+                color={isFilled ? "yellow" : "#bbb"}
+                size={size}
+              />
             </button>
           );
         }}
