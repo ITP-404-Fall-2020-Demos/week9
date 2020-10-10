@@ -1,13 +1,10 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function StarRating({
   value,
   onClick,
-  emptyColor,
-  filledColor,
-  size,
+  renderEmptyStar,
+  renderFilledStar,
 }) {
   const stars = [];
 
@@ -18,9 +15,8 @@ export default function StarRating({
         starRatingValue={value}
         key={i}
         onClick={onClick}
-        emptyColor={emptyColor}
-        filledColor={filledColor}
-        size={size}
+        renderEmptyStar={renderEmptyStar}
+        renderFilledStar={renderFilledStar}
       />
     );
   }
@@ -32,22 +28,23 @@ function Star({
   starValue,
   starRatingValue,
   onClick,
-  emptyColor = "#ddd",
-  filledColor = "yellow",
-  size = "2x",
+  renderEmptyStar,
+  renderFilledStar,
 }) {
   function handleClick() {
     const clickedStarValue = starValue === starRatingValue ? 0 : starValue;
     onClick(clickedStarValue);
   }
 
+  const arg = {
+    onClick: handleClick,
+  };
+
   return (
-    <button type="button" className="btn btn-link" onClick={handleClick}>
-      <FontAwesomeIcon
-        icon={faStar}
-        color={starValue <= starRatingValue ? filledColor : emptyColor}
-        size={size}
-      />
-    </button>
+    <>
+      {starValue <= starRatingValue
+        ? renderFilledStar(arg)
+        : renderEmptyStar(arg)}
+    </>
   );
 }
