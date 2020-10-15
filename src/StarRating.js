@@ -1,10 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function StarRating({ value, onClick, children: renderStar }) {
+export default function StarRating({
+  starCount = 5,
+  value,
+  onClick,
+  children: renderStar,
+}) {
   const stars = [];
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= starCount; i++) {
     stars.push(
       <Star
         key={i}
